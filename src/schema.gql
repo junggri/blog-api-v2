@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Google {
+  createdAt: DateTime!
+  id: Int!
+  rows: Float!
+  totalsForAllResults: Result!
+  updatedAt: DateTime
+}
+
+type Query {
+  getVideos(data: YoutubeInput!): Youtube!
+  getVisitor: Google!
+  ping: String!
+}
+
+type Result {
+  session: String!
+  user: String!
+}
+
+type Youtube {
+  data: String!
+  nextPageToken: String
+}
+
+input YoutubeInput {
+  nextPageToken: String
+}

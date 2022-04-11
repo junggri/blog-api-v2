@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  back:
+    ports:
+      - "5000:5000"
+    image: blog-api
+    networks:
+      - app_net
+    env_file: .env.production
+
+
+  redis:
+    image: redis:latest
+    networks:
+      - app_net
+    command: [ "redis-server", "--bind", "redis", "--port", "6379" ]
+
+networks:
+  app_net:
+    driver: bridge
+
+
