@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Auth {
+  access_token: String!
+}
+
+input DashBoardInput {
+  frequency: dashBoardFrequency!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -15,15 +23,109 @@ type Google {
   updatedAt: DateTime
 }
 
+type Message {
+  content: String!
+  createdAt: DateTime!
+  email: String!
+  id: Int!
+  name: String!
+  phoneNumber: String!
+  updatedAt: DateTime
+}
+
+input MessageInput {
+  content: String!
+  email: String!
+  name: String!
+  phoneNumber: String!
+}
+
+input MessageReplyInput {
+  content: String!
+  email: String!
+  subject: String!
+}
+
+type Mutation {
+  changePostState: String!
+  createMessage(data: MessageInput!): String!
+  createVisit(data: VisitInput!): Int!
+  deletePost: String!
+  login(data: UserInput!): Auth!
+  replyMessage(data: MessageReplyInput!): String!
+  upsertPost: Post!
+}
+
+type PageEdge {
+  cursor: Float!
+  node: Post!
+}
+
+type PageInfo {
+  endCursor: Float
+  hasNextPage: Boolean
+}
+
+type PaginatedPost {
+  edges: [PageEdge!]!
+  leftCount: Float
+  pageInfo: PageInfo
+}
+
+input PaginationInput {
+  after: Float
+  filter: String = "open"
+  first: Float!
+}
+
+type Post {
+  content: String!
+  createdAt: DateTime!
+  description: String!
+  id: Int!
+  isPublished: Boolean!
+  open: Boolean!
+  thumbnail: String!
+  title: String!
+  updatedAt: DateTime
+}
+
 type Query {
+  getMessage: [Message!]!
+  getPaginationPost(data: PaginationInput!): [PaginatedPost!]
+  getPost: Post!
+  getS3Image(data: s3Input!): String!
   getVideos(data: YoutubeInput!): Youtube!
+  getVisitDashBoard(data: DashBoardInput!): [Visit!]
   getVisitor: Google!
   ping: String!
+  validate: String!
 }
 
 type Result {
   session: String!
   user: String!
+}
+
+input UserInput {
+  password: String!
+  username: String!
+}
+
+type Visit {
+  city: String!
+  count: Float!
+  country: String!
+  createdAt: DateTime!
+  id: Int!
+  regionAddress: String!
+  regionName: String!
+  updatedAt: DateTime
+}
+
+input VisitInput {
+  lat: String!
+  lon: String!
 }
 
 type Youtube {
@@ -33,4 +135,19 @@ type Youtube {
 
 input YoutubeInput {
   nextPageToken: String
+}
+
+enum dashBoardFrequency {
+  FIFTEEN_DAY
+  ONE_DAY
+  ONE_MONTH
+  ONE_YEAR
+  SEVEN_DAY
+  SIX_MONTH
+  THREE_MONTH
+}
+
+input s3Input {
+  data: String!
+  path: String!
 }

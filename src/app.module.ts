@@ -13,6 +13,9 @@ import { MessageModule } from '@src/message/message.module';
 import { PostModule } from '@src/post/post.module';
 import { UserModule } from '@src/user/user.module';
 import { VisitModule } from '@src/visit/visit.module';
+import { FileModule } from '@src/file/file.module';
+import { ExternalApiModule } from '@src/externalApi/externalApi.module';
+import { DateModule } from '@src/date/date.module';
 
 @Module({
   imports: [
@@ -43,6 +46,9 @@ import { VisitModule } from '@src/visit/visit.module';
     PostModule,
     UserModule,
     VisitModule,
+    FileModule,
+    ExternalApiModule,
+    DateModule,
   ],
   controllers: [],
   providers: [],
