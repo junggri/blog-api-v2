@@ -22,6 +22,6 @@ export class s3Input {
   path: string;
 
   @Field()
-  data: string;
+  data: number;
 }
 

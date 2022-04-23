@@ -8,4 +8,7 @@ import { Column, Entity } from 'typeorm';
 export class Hit extends Base {
   @Column({ type: 'int', nullable: false })
   postId: number;
+
+  @Column()
+  identifier: string;
 }

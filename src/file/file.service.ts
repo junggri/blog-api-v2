@@ -18,7 +18,7 @@ export class FileService {
   }
 
 
-  async upsertContent(content: string, filename: string) {
+  async upsertContent(content: string, filename: number) {
     const input: Partial<S3Params> = {
       filename: `${filename}.txt`,
       body: content,
@@ -68,9 +68,9 @@ export class FileService {
 
     try {
       const result = await this.s3.getObject(input).promise();
-      // return {}
+      return { postId: data.data, data: result.Body.toString() };
     } catch (e) {
-
+      console.error(e);
     }
   }
 }

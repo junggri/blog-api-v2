@@ -19,7 +19,7 @@ export class VisitResolver {
   }
 
   @Mutation(() => Int)
-  async createVisit(@ctx() response: Response, @Args('data')data: VisitInput) {
-
+  async createVisit(@ctx() response: Response, @Args('data') data: VisitInput) {
+    return this.visitService.createVisit(response, data);
   }
 }

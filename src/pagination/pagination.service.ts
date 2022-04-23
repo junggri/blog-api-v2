@@ -33,7 +33,7 @@ export class PaginationService {
 
     const result = await query.getMany();
 
-    const endCursorId = result.length > 0 ? result[result.length - 1][0].id : null;
+    const endCursorId = result.length > 0 ? result[result.length - 1].id : null;
 
     await countQuery
       .where('post.id < :id', { id: endCursorId });
@@ -51,7 +51,7 @@ export class PaginationService {
     });
 
     const pageInfo = new PageInfo();
-    pageInfo.endCursor = edges.length ? edges[edges.length - 1][0].cursor : null;
+    pageInfo.endCursor = edges.length ? edges[edges.length - 1].cursor : null;
     pageInfo.hasNextPage = leftCount > 0;
 
     return { leftCount, edges, pageInfo };

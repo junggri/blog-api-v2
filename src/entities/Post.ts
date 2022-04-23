@@ -21,12 +21,15 @@ export class Post extends Base {
   @Column()
   open: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ nullable: true })
   thumbnail?: string;
 
-  @Field()
   @Column()
+  @Field()
+  type: 'post' | 'log';
+
+  @Field()
   content: string;
 }
 
